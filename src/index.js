@@ -7,7 +7,7 @@ import { Provider } from "./context/context";
 import { SpeechProvider } from "@speechly/react-client";
 
 ReactDOM.render(
-    <SpeechProvider appId="4e80870f-a77b-44d8-a7ce-150fb7f164bf" language="en-US">
+    <SpeechProvider appId={process.env.REACT_APP_SPEECHLY_APP_ID} language="en-US">
         <Provider>
             <App />
         </Provider>
