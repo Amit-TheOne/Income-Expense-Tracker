@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Income - Expense Tracker",
+  "name": "Income - Expense Tracker App powered by Speechly",
   "icons": [
     {
       "src": "favicon.ico",
