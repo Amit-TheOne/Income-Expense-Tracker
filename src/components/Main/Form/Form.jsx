@@ -44,9 +44,11 @@ const Form = () => {
         if (
             Number.isNaN(Number(formData.amount)) ||
             !formData.date.includes("-") ||
-            formData.amount <= 0
-        )
-            return;
+            formData.amount <= 0 ||
+            formData.type === "" ||
+            formData.category === ""
+        ) return;
+        
         const transaction = {
             ...formData,
             amount: Number(formData.amount),
@@ -142,14 +144,14 @@ const Form = () => {
                     gutterBottom
                     style={{ fontSize: "18px" }}
                 >
-                    {segment &&
-                        segment.words.map((w) => w.value).join(" ").toUpperCase()}
+                    {segment && segment.words.map((w) => w.value).join(" ").toUpperCase()}
                 </Typography>
             </Grid>
             <Grid item xs={6}>
                 <FormControl fullWidth>
                     <InputLabel>Type</InputLabel>
                     <Select
+                        required={true}
                         value={formData.type}
                         onChange={(e) =>
                             setFormData({ ...formData, type: e.target.value })
@@ -164,6 +166,7 @@ const Form = () => {
                 <FormControl fullWidth>
                     <InputLabel>Category</InputLabel>
                     <Select
+                        required={true}
                         value={formData.category}
                         onChange={(e) =>
                             setFormData({
@@ -172,13 +175,12 @@ const Form = () => {
                             })
                         }
                     >
-                        {formData.type
-                            ? selectedCategories.map((c) => (
-                                  <MenuItem key={c.type} value={c.type}>
-                                      {c.type}
-                                  </MenuItem>
-                              ))
-                            : null}
+                        {formData.type &&
+                            selectedCategories.map((c) => (
+                                <MenuItem key={c.type} value={c.type}>
+                                    {c.type}
+                                </MenuItem>
+                            ))}
                     </Select>
                 </FormControl>
             </Grid>
