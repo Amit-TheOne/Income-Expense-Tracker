@@ -4,7 +4,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 
 import useStyles from "./styles";
 
-const CustomizedSnackbar = ({ open, setOpen }) => {
+const CustomizedSnackbar = ({ open, setOpen, action }) => {
     const classes = useStyles();
 
     const handleClose = (event, reason) => {
@@ -22,12 +22,12 @@ const CustomizedSnackbar = ({ open, setOpen }) => {
                 onClose={handleClose}
             >
                 <MuiAlert
-                    onClose={handleClose}
-                    severity="success"
+                    severity={action === "add" ? "success" : "error"}
                     elevation={6}
                     variant="filled"
+                    onClose={handleClose}
                 >
-                    Transcation successfully created.
+                    {action === "add" ? "Transaction created successfully." : "Transaction deleted successfully."}
                 </MuiAlert>
             </Snackbar>
         </div>

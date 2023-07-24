@@ -134,7 +134,7 @@ const Form = () => {
 
     return (
         <Grid container spacing={2}>
-            <CustomizedSnackbar open={open} setOpen={setOpen} />
+            <CustomizedSnackbar open={open} setOpen={setOpen} action="add"/>
             <Grid item xs={12}>
                 <Typography
                     align="center"
