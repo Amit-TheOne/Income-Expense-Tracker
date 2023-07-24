@@ -25,7 +25,7 @@ import CustomizedSnackbar from "../../Snackbar/Snackbar";
 const initialState = {
     amount: "",
     category: "",
-    type: "Income",
+    type: "",
     date: formatDate(new Date()),
 };
 
@@ -43,7 +43,8 @@ const Form = () => {
     const createTransaction = () => {
         if (
             Number.isNaN(Number(formData.amount)) ||
-            !formData.date.includes("-")
+            !formData.date.includes("-") ||
+            formData.amount <= 0
         )
             return;
         const transaction = {
@@ -135,8 +136,14 @@ const Form = () => {
         <Grid container spacing={2}>
             <CustomizedSnackbar open={open} setOpen={setOpen} />
             <Grid item xs={12}>
-                <Typography align="center" variant="subtitle2" gutterBottom>
-                    {segment && segment.words.map((w) => w.value).join(" ")}
+                <Typography
+                    align="center"
+                    variant="subtitle2"
+                    gutterBottom
+                    style={{ fontSize: "18px" }}
+                >
+                    {segment &&
+                        segment.words.map((w) => w.value).join(" ").toUpperCase()}
                 </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -165,12 +172,13 @@ const Form = () => {
                             })
                         }
                     >
-                        {selectedCategories.map((c) => (
-                            <MenuItem key={c.type} value={c.type}>
-                                {" "}
-                                {c.type}{" "}
-                            </MenuItem>
-                        ))}
+                        {formData.type
+                            ? selectedCategories.map((c) => (
+                                  <MenuItem key={c.type} value={c.type}>
+                                      {c.type}
+                                  </MenuItem>
+                              ))
+                            : null}
                     </Select>
                 </FormControl>
             </Grid>
@@ -201,12 +209,12 @@ const Form = () => {
             </Grid>
             <Button
                 className={classes.button}
-                variant="outlined"
-                color="primary"
+                variant="contained"
+                color="secondary"
                 fullWidth
                 onClick={createTransaction}
             >
-                Create
+                Create Transaction
             </Button>
         </Grid>
     );

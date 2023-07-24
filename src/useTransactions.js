@@ -23,17 +23,9 @@ const useTransactions = (title) => {
             data: filteredCategories.map((c) => c.amount),
             backgroundColor: filteredCategories.map((c) => c.color),
             hoverOffset: 10,
-            radius: 120,
+            radius: 150,
         }],
         labels: filteredCategories.map((c) => c.type),
-        // options: {
-        //    elements: {
-        //         arc: {
-        //             // borderAlign: "inner"
-        //             borderWidth: 500
-        //         }
-        //    }
-        // }
     }
 
     return { chartData, total }

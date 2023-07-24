@@ -15,10 +15,10 @@ export default makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    cartContent: {
+    cardContent: {
         paddingTop: 0,
     },
     divider: {
-        margin: '20px 0',
+        margin: '10px 0',
     },
 }));
